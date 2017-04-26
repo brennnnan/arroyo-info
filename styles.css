@@ -213,3 +213,7 @@ li:hover {
 #birds:hover {
 	background-color: greenyellow;
 }
+
+#sightings:hover {
+	background-color: mediumpurple;
+}
