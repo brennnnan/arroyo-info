@@ -92,7 +92,7 @@ body {
 
 .type-nav li:hover{
 	cursor: pointer;
-	
+	background-color: skyblue;
 }
 
 .type-nav li {
@@ -109,8 +109,6 @@ body {
 	transition: background-color .5s;
 	-webkit-transition: background-color .5s;
 }
-
-
 
 .container {
 	width: 85%;
