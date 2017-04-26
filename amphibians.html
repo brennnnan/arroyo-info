@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<head>
 		<link rel="stylesheet" href="styles.css" type="text/css">
+		<script src="js/js-cookies"></script>
 		<title>Arroyo</title>
 	</head>
 	<body>
@@ -18,6 +19,7 @@
 					<li><a id="reptiles" href="reptiles.html">Reptiles</a></li>
 					<li><a id="amphibians" href="amphibians.html">Amphibians</a></li>
 					<li><a id="birds" href="birds.html">Birds</a></li>
+					<li><a id="sightings" href="sightings.html">Sightings</a></li>
 				</ul>
 			</div>
 		</header>
@@ -25,20 +27,20 @@
 			<h2>Amphibians</h2>
 			<div class="text-container">
 				<p>Amphibians are very important to maintaining a healthy ecosystem. Unfortunately, they are extremely sensitive to environmental pollutants as they literally breathe through their skin. As a result, amphibians in the arroyo can be hard to find if you look in the wrong places. </p>
-				<div class="animal-container clearfix">
+				<div id="toad" class="animal-container clearfix" onClick="animalSeen(this.id)">
 					<img src="images/bbhalophilusriv307.jpg">
 					<h3>California toad</h3>
 					<h5>Bufo boreas halophilus</h5>
 					<p>The California Toad occurs from all of Northern California and down south into Baja California. There are scattered populations in isolated desert areas, such as in the Mojave Desert, but they generally do not occur in the desert areas from Death Valley southward.[5] The habitats for the California Toad range from woodland, grassland, and meadows in forest areas to backyards and parks in the suburbs. It breeds in lakes, creeks, ponds, reservoirs, slowly flowing streams, and canals.[6]
 					</p>
 				</div>
-				<div class="animal-container clearfix">
+				<div id="treefrog" class="animal-container clearfix" onClick="animalSeen(this.id)">
 					<img src="images/pregillahu05.jpg">
 					<h3>Pacific treefrog</h3>
 					<h5>Hyla regilla</h5>
 					<p>The Pacific Treefrog occurs from California to the Southern tip of Alaska, in altitudes from sea level to 10,000 feet. They reproduce aquatically and have a loud chorus. Though previously thought to occur in two different color morphs, it is now generally accepted that they can change color based on environmental features. This change takes a few weeks to occur fully but changes are noticeable within a few hours. There has even been a blue frog found in Humbolt!</p>
 				</div>
-				<div class="animal-container clearfix">
+				<div id="ca-frog" class="animal-container clearfix" onClick="animalSeen(this.id)">
 					<img src="images/radraytoni4sm04.jpg">
 					<h3>California red-legged frog</h3>
 					<h5>Rana aurora draytonii</h5>
@@ -46,5 +48,64 @@
 				</div>
 			</div>
 		</div>
+		
+		<script>
+			var amphibians = Cookies.get('amphibians');
+			if(amphibians) {
+				var obj = JSON.parse(amphibians);
+				console.log(obj)
+				for(var i=0; i<obj.sighted.length; i++) {
+					var seen = document.getElementById(obj.sighted[i]);
+					seen.style.backgroundColor = "rgb(230, 230, 240)";
+				}
+			}
+			
+			function animalSeen(id) {
+				var seen = document.getElementById(id);
+				style = window.getComputedStyle(seen);
+				bgcol = style.getPropertyValue('background-color');
+				var amphibians = Cookies.get('amphibians');
+				console.log(amphibians);
+				
+				// If it hasn't been clicked on
+				if(bgcol != "rgb(230, 230, 240)") {
+					seen.style.backgroundColor = "rgb(230, 230, 240)";
+
+					if (amphibians) {
+						var obj = JSON.parse(amphibians);
+						console.log(obj.sighted.length)
+						if(!Array.isArray(obj.sighted)) {
+							var sightedArray = [obj.sighted, id]
+							console.log(sightedArray)
+							obj = {
+								sighted: sightedArray
+							}
+						} else {
+							console.log(obj.sighted)
+							if(!obj.sighted.includes(id)) {
+								obj.sighted.push(id)
+							}
+						}
+						Cookies.set('amphibians', obj);
+					} else {
+						Cookies.set('amphibians', {sighted: id})
+					}
+				} else {
+					// if it has been clicked on 
+					seen.style.backgroundColor = "rgb(255, 255, 240)";
+					var obj = JSON.parse(amphibians);
+					if(obj.sighted[0].length == 1) {
+						obj.sighted = []
+					} else {
+						var index = obj.sighted.indexOf(id);
+						obj.sighted.splice(index,1)
+					}
+					console.log('Removed '+id);
+					console.log(obj.sighted)
+					Cookies.set('amphibians', obj)
+				}
+			}
+		</script>
+		
 	</body>
 </html>

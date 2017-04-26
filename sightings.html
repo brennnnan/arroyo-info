@@ -19,6 +19,7 @@
 					<li><a id="reptiles" href="reptiles.html">Reptiles</a></li>
 					<li><a id="amphibians" href="amphibians.html">Amphibians</a></li>
 					<li><a id="birds" href="birds.html">Birds</a></li>
+					<li><a id="sightings" href="sightings.html">Sightings</a></li>
 				</ul>
 			</div>
 		</header>
@@ -30,6 +31,7 @@
 				</p>
 				<div class="type-nav">
 					<ul>
+						<li id='clear' onclick='removeCookies()'>clear</li>
 						<li id='all' onclick='showAll()'>all</li>
 						<li id='common' onclick='showCommon()'>common</li>
 						<li id='uncommon' onclick='showUncommon()'>uncommon</li>
@@ -37,32 +39,96 @@
 					</ul>
 				</div>
 				<div class="content-container">
-					<div class="sm-animal-container  mammal">
+					<div class="sm-animal-container mammal common" id="coyote">
 						<img src="images/coyote.jpg">
 						<h4>Coyote</h4>
 						<h5>Canis Lupus</h5>
 					</div>
-					<div class="sm-animal-container mammal">
+					<div class="sm-animal-container mammal common" id="rabbit">
 						<img src="images/rabbit.jpg">
 						<h4>Audobon Cottontail</h4>
 						<h5>Sylvilagus audobonii</h5>
 					</div>
-					<div class="sm-animal-container  mammal">
+					<div class="sm-animal-container mammal common" id="squirrel">
 						<img src="images/California-Ground-Squirrel-by-aehack-Allan-Hack-Flickr.jpg">
 						<h4>California Ground Squirrel</h4>
 						<h5>Spermophilus beecheyi</h5>
 					</div>
-					<div class="sm-animal-container mammal">
-						<img src="images/coyote.jpg">
+					<div class="sm-animal-container mammal uncommon" id="gopher">
+						<img src="images/gopher.jpg">
+						<h4>Botta's Pocket Gopher</h4>
+						<h5>Thomomys bottae</h5>
 					</div>
-					<div class="sm-animal-container  mammal">
-						<img src="images/coyote.jpg">
+					<div class="sm-animal-container reptile common" id="western-fence">
+						<img src="images/p65601054-4.jpg">
+						<h4>Western Fence Lizard</h4>
+						<h5>Sceleporous occidentalis</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="side-blotched">
+						<img src="images/side-blotched.jpg">
+						<h4>Side Blotched Lizard</h4>
+						<h5>Uta stansburiana</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="alligator">
+						<img src="images/alligator-lizard.jpg">
+						<h4>San Diego Alligator Lizard</h4>
+						<h5>Elgaria multicarinatus webbi</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="whiptail">
+						<img src="images/whiptail.jpg">
+						<h4>Coastal Western Whiptail</h4>
+						<h5>Cnemidophorus tigris multiscutatus</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="racer">
+						<img src="images/california-racer.jpg">
+						<h4>California striped racer</h4>
+						<h5>Masticophis lateralis lateralis</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="gopher-snake">
+						<img src="images/sd-gopher-snake.jpg">
+						<h4>San Diego Gopher Snake</h4>
+						<h5>Pitouphis melanoleucus annectens</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="gartersnake">
+						<img src="images/tsinfernalismspencermend09.jpg">
+						<h4>California red-sided gartersnake</h4>
+						<h5>Thamnophis sirtalis infernalis</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="rattlesnake">
+						<img src="images/sp-rattlesnake.jpg">
+						<h4>Southern Pacific rattlesnake</h4>
+						<h5>Crotalus oreganus helleri</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="two-sided-garter">
+						<img src="images/thammondii.jpg">
+						<h4>Two-striped gartersnake</h4>
+						<h5>Thamnophis hammondii</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="toad">
+						<img src="images/bbhalophilusriv307.jpg">
+						<h4>California toad</h4>
+						<h5>Bufo boreas halophilus</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="treefrog">
+						<img src="images/pregillahu05.jpg">
+						<h4>Pacific treefrog</h4>
+						<h5>Hyla regilla</h5>
+					</div>
+					<div class="sm-animal-container reptile common" id="ca-frog">
+						<img src="images/radraytoni4sm04.jpg">
+						<h4>California red-legged frog</h4>
+						<h5>Rana aurora draytonii</h5>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<script>
+			checkCookies('mammals');
+			checkCookies('reptiles');
+			checkCookies('amphibians');
+			checkCookies('birds');
+			
 			var allbutton = document.getElementById("all");
 			allbutton.style.backgroundColor = "skyblue"
 			function showAll(){
@@ -75,7 +141,7 @@
 				rarebutton.style.backgroundColor = "rgb(245,250,255)"
 				allbutton.style.backgroundColor = "skyblue"
 				
-				var all = document.getElementsByClassName("animal-container");
+				var all = document.getElementsByClassName("sm-animal-container");
 				for(var i=0; i< all.length; i++) {
 					all[i].style.display = "block";
 				}
@@ -157,6 +223,27 @@
 					uncommon[i].style.display = "none";
 				}
 			}
+			function checkCookies(animalType) {
+				var animalCookie = Cookies.get(animalType);
+				if(animalCookie) {
+					var obj = JSON.parse(animalCookie);
+					for(i=0; i<obj.sighted.length; i++) {
+						animal = document.getElementById(obj.sighted[i]); 
+						animal.style.display = "block";	
+					}
+				}
+			}
+			function removeCookies() {
+				Cookies.remove('mammals');
+				Cookies.remove('reptiles');
+				Cookies.remove('amphibians');
+				Cookies.remove('birds');
+				var smContainers = document.getElementsByClassName("sm-animal-container");
+				for(var i=0; i< smContainers.length; i++) {
+					smContainers[i].style.display = "none";
+				}
+			}
+			
 			
 		</script>
 	</body>
