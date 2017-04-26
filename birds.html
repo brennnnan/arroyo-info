@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<head>
 		<link rel="stylesheet" href="styles.css" type="text/css">
+		<script src="js/js-cookies"></script>
 		<title>Arroyo</title>
 	</head>
 	<body>
@@ -24,7 +25,13 @@
 		<div class="container body-container">
 			<h2>Birds</h2>
 			<div class="text-container">
-				<p>Birds are really cool</p>
+				<p>
+					The Arroyo Seco has just about everything for a terrestrial birder. Stretching about 15 miles from its headwaters at Red Box in the San Gabriel Mountains to its confluence with the Los Angeles River, the Arroyo Seco passes by or through Switzer’s campground, Jet Propulsion Laboratory, Hahamongna Watershed Park, Brookside Golf Course, the Rose Bowl, Lower Arroyo Seco Park, and Debs Regional Park. The habitats it travels through include; coniferous and deciduous forest; chaparral; oak woodland; riparian; pond, rivers and streams; eucalyptus groves; and manicured parks. 
+					<br><br>
+					The birds are can be group by their abundance. Common means that in an outing one can expect to see anywhere from 6 to hundreds of that species. Uncommon means that small numbers (less than 10) can be encountered under the appropriate conditions. Rare means that just a handful are encountered, but on a semi regular basis.
+					<br>
+					<br>
+				</p>
 				<div class="type-nav">
 					<ul>
 						<li id='all' onclick='showAll()'>all</li>
@@ -260,6 +267,7 @@
 				
 			} 
 			function showRare() {
+				Cookies.set('userDiary', 'I like rare stuff');
 				var allbutton = document.getElementById("all");
 				var commonbutton = document.getElementById("common");
 				var uncommonbutton = document.getElementById("uncommon");

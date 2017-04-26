@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<head>
+		<link rel="stylesheet" href="styles.css" type="text/css">
+		<script src="js/js-cookies"></script>
+		<title>Arroyo</title>
+	</head>
+	<body>
+		<header>
+			<div class="container clearfix">
+				<div class="page-title">
+					<a href="index.html">
+						<h1>Arroyo Seco</h1>
+					</a>
+				</div>
+				<ul class="header-nav">
+					<li><a id="mammals" href="mammals.html">Mammals</a></li>
+					<li><a id="reptiles" href="reptiles.html">Reptiles</a></li>
+					<li><a id="amphibians" href="amphibians.html">Amphibians</a></li>
+					<li><a id="birds" href="birds.html">Birds</a></li>
+				</ul>
+			</div>
+		</header>
+		<div class="container body-container">
+			<h2>My Sightings</h2>
+			<div class="text-container">
+				<p>
+					Shows animals you have seen
+				</p>
+				<div class="type-nav">
+					<ul>
+						<li id='all' onclick='showAll()'>all</li>
+						<li id='common' onclick='showCommon()'>common</li>
+						<li id='uncommon' onclick='showUncommon()'>uncommon</li>
+						<li id='rare' onclick='showRare()'>rare</li>
+					</ul>
+				</div>
+				<div class="content-container">
+					<div class="sm-animal-container  mammal">
+						<img src="images/coyote.jpg">
+						<h4>Coyote</h4>
+						<h5>Canis Lupus</h5>
+					</div>
+					<div class="sm-animal-container mammal">
+						<img src="images/rabbit.jpg">
+						<h4>Audobon Cottontail</h4>
+						<h5>Sylvilagus audobonii</h5>
+					</div>
+					<div class="sm-animal-container  mammal">
+						<img src="images/California-Ground-Squirrel-by-aehack-Allan-Hack-Flickr.jpg">
+						<h4>California Ground Squirrel</h4>
+						<h5>Spermophilus beecheyi</h5>
+					</div>
+					<div class="sm-animal-container mammal">
+						<img src="images/coyote.jpg">
+					</div>
+					<div class="sm-animal-container  mammal">
+						<img src="images/coyote.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			var allbutton = document.getElementById("all");
+			allbutton.style.backgroundColor = "skyblue"
+			function showAll(){
+				var allbutton = document.getElementById("all");
+				var commonbutton = document.getElementById("common");
+				var uncommonbutton = document.getElementById("uncommon");
+				var rarebutton = document.getElementById("rare");
+				uncommonbutton.style.backgroundColor = "rgb(245,250,255)";
+				commonbutton.style.backgroundColor = "rgb(245,250,255)"
+				rarebutton.style.backgroundColor = "rgb(245,250,255)"
+				allbutton.style.backgroundColor = "skyblue"
+				
+				var all = document.getElementsByClassName("animal-container");
+				for(var i=0; i< all.length; i++) {
+					all[i].style.display = "block";
+				}
+			}
+			function showCommon(){
+				var allbutton = document.getElementById("all");
+				var commonbutton = document.getElementById("common");
+				var uncommonbutton = document.getElementById("uncommon");
+				var rarebutton = document.getElementById("rare");
+				uncommonbutton.style.backgroundColor = "rgb(245,250,255)";
+				commonbutton.style.backgroundColor = "skyblue"
+				rarebutton.style.backgroundColor = "rgb(245,250,255)"
+				allbutton.style.backgroundColor = "rgb(245,250,255)"
+				
+				var common = document.getElementsByClassName("common");
+				for(var i=0; i< common.length; i++) {
+					common[i].style.display = "block";
+				}
+				
+				var rare = document.getElementsByClassName("rare");
+				for(var i=0; i< rare.length; i++) {
+					rare[i].style.display = "none";
+				}
+				
+				var uncommon = document.getElementsByClassName("uncommon");
+				for(var i=0; i< uncommon.length; i++) {
+					uncommon[i].style.display = "none";
+				}
+			}
+			function showUncommon(){
+				var allbutton = document.getElementById("all");
+				var commonbutton = document.getElementById("common");
+				var uncommonbutton = document.getElementById("uncommon");
+				var rarebutton = document.getElementById("rare");
+				uncommonbutton.style.backgroundColor = "skyblue";
+				commonbutton.style.backgroundColor = "rgb(245,250,255)"
+				rarebutton.style.backgroundColor = "rgb(245,250,255)"
+				allbutton.style.backgroundColor = "rgb(245,250,255)"
+				
+				var common = document.getElementsByClassName("common");
+				for(var i=0; i< common.length; i++) {
+					common[i].style.display = "none";
+				}
+				
+				var rare = document.getElementsByClassName("rare");
+				for(var i=0; i< rare.length; i++) {
+					rare[i].style.display = "none";
+				}
+				
+				var uncommon = document.getElementsByClassName("uncommon");
+				for(var i=0; i< uncommon.length; i++) {
+					uncommon[i].style.display = "block";
+				}
+				
+			} 
+			function showRare() {
+				Cookies.set('userDiary', 'I like rare stuff');
+				var allbutton = document.getElementById("all");
+				var commonbutton = document.getElementById("common");
+				var uncommonbutton = document.getElementById("uncommon");
+				var rarebutton = document.getElementById("rare");
+				uncommonbutton.style.backgroundColor = "rgb(245,250,255)";
+				commonbutton.style.backgroundColor = "rgb(245,250,255)"
+				rarebutton.style.backgroundColor = "skyblue"
+				allbutton.style.backgroundColor = "rgb(245,250,255)"
+				
+				var common = document.getElementsByClassName("common");
+				for(var i=0; i< common.length; i++) {
+					common[i].style.display = "none";
+				}
+				
+				var rare = document.getElementsByClassName("rare");
+				for(var i=0; i< rare.length; i++) {
+					rare[i].style.display = "block";
+				}
+				
+				var uncommon = document.getElementsByClassName("uncommon");
+				for(var i=0; i< uncommon.length; i++) {
+					uncommon[i].style.display = "none";
+				}
+			}
+			
+		</script>
+	</body>
+</html>
